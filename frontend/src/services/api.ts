@@ -2,7 +2,7 @@ import axios from "axios";
 import type { Note } from "../types/Note";
 
 const API = axios.create({
-	baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080/api/notes",
+	baseURL: import.meta.env.VITE_API_URL,
 });
 
 export const getNotes = () => API.get<Note[]>("/");
