@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  backend:
+    build: ./backend
+    container_name: cloudnotes-backend
+    ports:
+      - "8080:8080"
+    # volumes:
+    #   - ./backend/db:/app
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: cloudnotes-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_URL=http://backend:8080/api/notes
+    depends_on:
+      - backend
+    restart: unless-stopped
